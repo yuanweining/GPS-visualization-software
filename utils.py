@@ -22,6 +22,8 @@ def decode_GSV(recv=None):
         s_type = 'GPS'
     elif recv[0] == '$GLGSV':
         s_type = 'GLONASS'
+    elif recv[0] == '$GBGSV':
+        s_type = 'BDS'
     for i in range(int((len(recv)-4)/4)):
         if recv[4*i+5] != '': elevation = float(recv[4*i+5]) 
         else: continue

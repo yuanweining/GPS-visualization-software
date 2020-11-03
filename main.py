@@ -30,6 +30,7 @@ class GUI(QWidget):
         self.radar_image = QtGui.QPixmap(resource_path('img/radar3.png'))
         self.gps_image = QtGui.QPixmap(resource_path('img/gps.png'))
         self.glonass_image = QtGui.QPixmap(resource_path('img/glonass.png'))
+        self.bds_image = QtGui.QPixmap(resource_path('img/bds.jpg'))
         
         self.middle = [301,306.5]#[351, 356.5]
         self.radius = 220.5
@@ -181,6 +182,8 @@ class GUI(QWidget):
             image = self.gps_image
         elif s_type == 'GLONASS':
             image = self.glonass_image
+        elif s_type == 'BDS':
+            image = self.bds_image
         else:
             return
         lb = self.satellites_label[i]
@@ -260,6 +263,7 @@ class GUI(QWidget):
         count = self.ser.inWaiting() 
         if count !=0 :
             self.recv = self.ser.readlines(self.ser.in_waiting)
+            print(self.recv)
             self.satellites = []
             self.browser_show()
             for r in self.recv:
